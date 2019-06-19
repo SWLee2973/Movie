@@ -1,0 +1,158 @@
+body{
+	background: white;
+}
+.screen_header{
+	height: 100%; width: 100%;
+	background: url('../img/movie-theater.jpg');
+	background-size: cover;
+	text-align: center;
+	color: white;
+}
+.header_elements{
+	height: 70%; width: 90%;
+	text-align: right;
+	padding-top: 210px;
+}
+.screen_font{
+	font-size: 60px;
+}
+._wrapper{
+	width: 80%;
+	margin: 0 auto;
+}
+.__menubar{
+	background-color: hotpink;
+	width: 100%;
+	min-width: 80%;
+	display: inline-block;
+	text-align: center;
+}
+.__menu{
+	margin: 0; padding: 0;
+}
+.__menu>li{
+	width:12.5%;
+	float: left;
+	list-style: none;
+	position: relative;
+}
+.__menu li{
+	list-style: none;
+}
+.__menu li:hover{
+	background: pink;
+}
+.__menu li.expand{
+	background: white;
+}
+.__menu li.expand>a{
+	color: hotpink;
+}
+.__menu a{
+	color: white;
+	display: block;
+	padding: 10px 20px;
+	text-decoration: none;
+}
+.__menu ul{
+	background: #eee;
+	border: 1px solid silver;
+	display: none;
+	padding: 0;
+	position: absolute;
+	left: 0;
+	top: 100%;
+	width: 100%;
+}
+.__menu ul li{
+	float: none;
+}
+.__menu ul li.expand{
+	background: #ddd;
+	opacity: 30%;
+}
+.__menu ul li.expand a{
+	color: black;
+}
+.__menu ul a{
+	color: black;
+}
+.__menu ul ul{
+	left: 100%; top: 0;
+}
+.menu_depth{
+	width: 100%;
+}
+.content_wrapper{
+	background-size: cover;
+	z-index: -1;
+	height: 65%;
+}
+.content_foot_wrapper{
+	height: 30%;
+	
+}
+.content_foot_wrapper_1{
+	float: left;
+	border: 1px solid blue;
+	width: 49.8%;
+	height: 100%;
+	display: inline-block;
+}
+.content_foot_wrapper_2{
+	float: right;
+	border: 1px solid blue;
+	width: 49.8%;
+	height: 100%;
+	display: inline-block;
+}
+.foot_head{
+	height: 30%;
+	border: 1px solid red;
+}
+table{
+	width: 100%;
+}
+td, tr{
+	border-top: 1px solid #aaaaaa;
+	border-bottom: 1px solid #aaaaaa;
+}
+tr td{
+	height: 80px;
+}
+.sc_name{
+	background: #dddddd;
+	width: 30%;
+	color: black;
+	font-size: 16px;
+	font-weight: bold;
+	border-right: 1px solid #aaaaaa;
+	padding: 10px;
+}
+.sc_screen{
+	background: #dddddd;
+	width: 10%;
+	text-align: right;
+	color: black;
+	font-size: 15px;
+	font-weight: bold;
+	padding: 10px;
+}
+.sc_schedule{
+	width: 12%;
+	text-align: center;
+	color: #333333;
+    border-left: 1px solid #ffffff;
+    border-right: 1px solid #ffffff;
+    border-top: 1px solid #aaaaaa;
+    border-bottom: 1px solid #aaaaaa;
+}
+.table_elem{
+	width: 100%;
+	height: 100%;
+	background: white;
+    border: 1px solid white;
+}
+.table_elem:hover {
+	background: skyblue;
+}

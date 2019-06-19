@@ -1,0 +1,29 @@
+body{
+	-webkit-touch-callout: none;
+	user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	-webkit-user-select: none;
+	background: white;
+}
+.member{
+	width: 100%;
+	align: center;
+	border-collapse: collapse;
+}
+.member th{
+	text-align: center;
+	color: #168;
+	border-bottom: 3px solid #168;
+	padding-bottom: 1px;
+}
+.member td{
+	color: #669;
+	border-bottom: 1px solid #ddd;
+	text-align: center;
+	padding-top: 1px;
+	padding-bottom: 1px;
+}
+.member tr:hover td{
+	color: #004;
+}

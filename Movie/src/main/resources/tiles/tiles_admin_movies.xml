@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="/movies/movies" extends="baseLayout">
+       <put-attribute name="title" value="전체 영화 보기" />
+       <put-attribute name="body" value="/WEB-INF/views/admin/movies/movies.jsp" />
+    </definition>
+    <definition name="/movies/theaters" extends="baseLayout">
+       <put-attribute name="title" value="상영관 보기" />
+       <put-attribute name="body" value="/WEB-INF/views/admin/movies/theaters.jsp" />
+    </definition>
+    <definition name="/movies/addNewMoviesForm" extends="baseLayout">
+       <put-attribute name="title" value="새 영화 추가 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/admin/movies/addNewMoviesForm.jsp" />
+    </definition>
+    <definition name="/movies/modifyMoviesForm" extends="baseLayout">
+       <put-attribute name="title" value="영화 수정 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/admin/movies/modifyMoviesForm.jsp" />
+    </definition>
+	<definition name="/movies/theaterDetail" extends="baseLayout">
+         <put-attribute name="title" value="영화관 상세정보, 기가박스" />
+         <put-attribute name="body" value="/WEB-INF/views/movies/theaterDetail.jsp" />
+    </definition>
+    <definition name="/movies/addNewTime" extends="baseLayout">
+         <put-attribute name="title" value="시간표 추가" />
+         <put-attribute name="body" value="/WEB-INF/views/admin/movies/addNewTime.jsp" />
+    </definition>
+    <definition name="/movies/adminMovieList" extends="baseLayout">
+         <put-attribute name="title" value="영화 목록 관리" />
+         <put-attribute name="body" value="/WEB-INF/views/admin/movies/adminMovieList.jsp" />
+    </definition>
+</tiles-definitions>
+
+

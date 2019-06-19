@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.movie">
+	<resultMap id="moviesResult" type="MoviesVO">
+		<result property="movie_code" column="movie_code"/>
+		<result property="name" column="name"/>
+		<result property="genre" column="genre"/>
+		<result property="running_time" column="running_time"/>
+		<result property="director" column="director"/>
+		<result property="rating" column="rating"/>
+		<result property="company" column="company"/>
+		<result property="country" column="country"/>
+		<result property="actors" column="actors"/>
+		<result property="open_date" column="open_date"/>
+		<result property="summary" column="summary"/>
+		<result property="movie_view" column="movie_view" />
+		<result property="image" column="image"/>
+		<result property="movie_image_path" column="movie_image_path"/>
+	</resultMap>
+   
+   <select id="selectMovies" resultMap="moviesResult">
+   <![CDATA[
+   		select *
+   		  from movie
+   ]]>
+   </select>
+   
+   <select id="selectPictures" resultMap="moviesResult">
+   <![CDATA[
+   		select movie_image_path, movie_code from movie_picture
+   ]]>
+   </select>
+   
+   <select id="selectMoviePicture" resultMap="moviesResult">
+	   	<![CDATA[
+	   		select movie_image_path from movie_picture
+	   	]]>
+	</select>
+   
+   <select id="openDate" resultMap="moviesResult">
+   <![CDATA[
+   		select open_date from movie
+   ]]>
+   </select>
+   
+  <insert id="addNewMovies"  parameterType="java.util.Map">
+  		<![CDATA[
+  			insert into movie(movie_code, 
+  								       name, 
+  								       genre, 
+  								       running_time, 
+  								       director, 
+  								       rating, 
+  								       company, 
+  								       country, 
+  								       actors, 
+  								       open_date, 
+  								       summary, 
+  								       movie_view, 
+  								       image)
+  			values(#{movie_code}, 
+  				       #{name}, 
+  				       #{genre}, 
+  				       #{running_time}, 
+  				       #{director}, 
+  				       #{rating}, 
+  				       #{company}, 
+  				       #{country}, 
+  				       #{actors}, 
+  				       #{open_date}, 
+  				       #{summary}, 
+  				       #{movie_view}, 
+  				       #{image})
+  		]]>
+  </insert>
+  
+  <insert id="addNewStillCut" parameterType="java.util.Map">
+  		<![CDATA[
+  			insert into movie_picture 
+  			values(#{movie_code}, #{movie_image_path}, 0)
+  		]]>
+	</insert>
+  
+   <insert id="addNewMoviesPictures" parameterType="java.util.Map">
+  		<![CDATA[
+  			insert into movie_picture 
+  			values (#{movie_code}, #{movie_image_path})
+  		]]>
+  </insert>
+  
+  <select id="getMainImage" parameterType="String" resultType="String">
+  		select movie_image_path from movie_picture
+  		where movie_code = #{movie_code}
+  			and main_image = 1
+  </select>
+  
+  <select id="getMovieDetail" parameterType="String" resultType="MoviesVO">
+  		select * 
+  		  from movie 
+  		where movie_code=#{movie_code}
+  </select>
+  
+  <select id="selectStillCut" resultMap="moviesResult" parameterType="String">
+	  	<![CDATA[
+			select movie_image_path
+			  from movie_picture
+			  where movie_code=#{movie_code}
+			  	and main_image=0
+	  	]]>
+	</select>
+	<insert id="addNewTime" parameterType="java.util.Map">
+		<![CDATA[
+			insert into time
+				values(#{time_code},
+							#{start_time},
+							#{end_time},
+							#{movie_date},
+							#{screen_code},
+							#{movie_code},
+							#{theater_code})
+		]]>
+	</insert>
+	
+	<delete id="deleteMovie" parameterType="String">
+		<![CDATA[
+			delete from movie
+			where movie_code=#{movie_code}
+		]]>
+	</delete>
+	
+	<delete id="delete_movie_picture" parameterType="String">
+		<![CDATA[
+			delete from movie_picture
+			where movie_code=#{movie_code}
+		]]>
+	</delete>
+	
+	<delete id="delete_seat" parameterType="String">
+		<![CDATA[
+			delete from seat
+			where movie_code=#{movie_code}
+		]]>
+	</delete>
+	<delete id="delete_time" parameterType="String">
+		<![CDATA[
+			delete from time
+			where movie_code=#{movie_code}
+		]]>
+	</delete>
+	
+	<select id="nameFromBooking" parameterType="String" resultType="String">
+		select name from movie where movie_code=#{movie_code}
+	</select>
+	
+	<delete id="delete_booking" parameterType="String">
+		<![CDATA[
+			delete from booking
+			where movie_name=#{movie_name}
+		]]>
+	</delete>
+	
+</mapper>

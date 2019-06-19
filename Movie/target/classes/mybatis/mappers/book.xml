@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+      PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.book">
+	<resultMap id="BookResult" type="bookVO">
+		<result property="booking_code" column="booking_code"/>
+		<result property="email" column="email"/>
+		<result property="phone_number" column="phone_number"/>
+		<result property="movie_name" column="movie_name"/>
+		<result property="movie_code" column="movie_code"/>		
+		<result property="theater_code" column="theater_code"/>		
+		<result property="theater_name" column="theater_name"/>		
+		<result property="screen_code" column="screen_code"/>		
+		<result property="screen_name" column="screen_name"/>		
+		<result property="time" column="time"/>		
+		<result property="movie_date" column="movie_date"/>		
+		<result property="selected_seat" column="selected_seat"/>		
+		<result property="total_price" column="total_price"/>		
+	</resultMap>
+	<resultMap id="BookInfo" type="bookInfoVO">
+		<result property="seat_code" column="seat_code"/>
+		<result property="booked_flag" column="booked_flag"/>
+	</resultMap>
+   
+   
+   <select id="selectPictures" resultMap="BookResult">
+   <![CDATA[
+   		select movie_image_path, movie_code from movie_picture
+   ]]>
+   </select>
+   
+   <insert id="addNewBook" parameterType="bookVO">
+   		<![CDATA[
+   			insert into booking values(#{booking_code}, #{email}, #{movie_name}, #{phone_number},
+   												#{theater_name}, #{screen_name}, #{time}, #{movie_date},
+   												#{selected_seat}, #{total_price})
+   		]]>
+   </insert>
+   
+   <insert id="setSelectedSeat" parameterType="java.util.Map">
+   		<![CDATA[
+   			insert into seat values(#{time}, #{movie_date}, #{movie_code}, #{selected_seat}, #{screen_code},
+   												#{theater_code}, 1, #{booking_code})
+   		]]>
+   </insert>
+   
+   <select id="getBookInfo" parameterType="java.util.Map" resultMap="BookInfo">
+   		select seat_code, booked_flag
+   		  from seat
+   		where time=#{time}
+   			and movie_code=#{movie_code}
+   			and theater_code=#{theater_code}
+   			and screen_code=#{screen_code}
+   			and movie_date=#{movie_date}
+   </select>
+   
+   <select id="getUserBook" resultMap="BookResult" parameterType="String">
+			select * from booking
+			where email=#{email}
+	</select>
+   
+</mapper>

@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.member">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="memberResult" type="MemberVO">
+		<result property="email" column="email"/>
+		<result property="password" column="password"/>
+		<result property="name" column="name"/>
+		<result property="birth" column="birth"/>
+		<result property="gender" column="gender"/>
+		<result property="phone_number" column="phone_number"/>
+		<result property="mileage" column="mileage"/>
+		<result property="grade" column="grade"/>
+		<!-- 도로지번추가 -->
+		<result property="zipcode" column="zipcode" />
+		<result property="roadAddress" column="roadAddress" />
+		<result property="jibunAddress" column="jibunAddress" />
+		<result property="namujiAddress" column="namujiAddress" />
+	</resultMap>	
+
+	<select id="login" resultType="memberVO"  parameterType="java.util.Map"  >
+	   <![CDATA[
+	   		select * from m_member
+	   		where email=#{email}
+	   		and password=#{password}
+	   ]]>
+	</select>
+	
+	<select id="memberDetail" parameterType="String" resultType="MemberVO">
+			select * from m_member
+			where email=#{email}
+	</select>
+	
+	<select id="selectOverlappedEmail" parameterType="String" resultType="String">
+		<![CDATA[
+			select decode(count(*), 1, 'true', 0, 'false')
+			from m_member
+			where email=#{email}
+		]]>
+	
+	</select>
+	
+	<insert id="insertNewMember" parameterType="memberVO">
+		<![CDATA[
+		insert into m_member(email,
+		                                  password,
+		                                  name,
+		                                  birth,
+		                                  gender,
+		                                  phone_number,
+		                                  zipcode,
+										  roadAddress,
+										  jibunAddress,
+										  namujiAddress)
+		                       values(#{email},
+		                                  #{password},
+		                                  #{name},
+		                                  #{ birth},
+		                                  #{gender},
+		                                  #{phone_number},
+		                                  #{zipcode},
+										  #{roadAddress},
+										  #{jibunAddress},
+										  #{namujiAddress}
+										  )
+		]]>	
+	</insert>
+	
+	<select id="findEmail" parameterType="java.util.Map" resultType="String">
+		select email
+		  from m_member
+		where name=#{name}
+			and phone_number=#{phone_number}
+	</select>
+	
+	<select id="findPassword" parameterType="java.util.Map" resultType="String">
+		select password
+		  from m_member
+		where name=#{name}
+			and phone_number=#{phone_number}
+			and email=#{email}
+	</select>
+	
+</mapper>

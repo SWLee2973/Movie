@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    <definition name="/book/bookForm" extends="baseLayout">
+       <put-attribute name="title" value="영화 예매 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/book/bookMoviesForm.jsp" />
+    </definition>
+    <definition name="/book/selectSeat" extends="baseLayout">
+       <put-attribute name="title" value="좌석 선택 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/book/selectSeat.jsp" />
+    </definition> 
+     <definition name="/book/bookResult" extends="baseLayout">
+       <put-attribute name="title" value="예매 결과 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/book/bookResult.jsp" />
+    </definition>
+    
+</tiles-definitions>
+
+

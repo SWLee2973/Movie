@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mapper.theater">
+<!-- 리절트 맵 정의 -->	
+	<resultMap id="theaterResult" type="TheaterVO">
+		<result property="theater_code" column="theater_code"/>
+		<result property="theater_name" column="theater_name"/>
+		<result property="theater_summary" column="theater_summary"/>
+		<result property="theater_area" column="theater_area"/>
+		<result property="movie_code" column="movie_code"/>
+		<result property="seq" column="seq"/>
+		<result property="name" column="name"/>
+		<result property="screen_name" column="screen_name"/>
+		<result property="screen_code" column="screen_code"/>
+        <result property="movie_date" column="movie_date"/>
+		<result property="t1" column="t1"/>
+		<result property="t2" column="t2"/>
+		<result property="t3" column="t3"/>
+		<result property="t4" column="t4"/>
+		<result property="t5" column="t5"/>
+	</resultMap>	
+
+	<select id="getAllTheatersList" resultMap="theaterResult">
+	   select * from theater order by theater_code
+	</select>
+	
+	<select id="getAllAreaList" resultMap="theaterResult">
+	   select distinct theater_area, seq from theater order by seq
+	</select>
+	
+	<select id="selectTheaterDetail" resultMap="theaterResult" parameterType="String">
+		select a.theater_code, a.theater_name, c.movie_date,
+				 	d.name, b.screen_name, d.movie_code, b.screen_code, d.rating,
+			max(nvl(decode(time_code,'t1',start_time),'')) t1,
+			max(nvl(decode(time_code,'t2',start_time),'')) t2,
+			max(nvl(decode(time_code,'t3',start_time),'')) t3,
+			max(nvl(decode(time_code,'t4',start_time),'')) t4,
+			max(nvl(decode(time_code,'t5',start_time),'')) t5
+        from theater a, screen b, time c, movie d
+        where a.theater_code=b.theater_code
+            and a.theater_code=#{theater_code}
+            and c.theater_code=#{theater_code}
+            and b.screen_code = c.screen_code
+            and d.movie_code=c.movie_code
+        group by a.theater_code, a.theater_name, c.movie_date, 
+        			  b.screen_name, d.name, d.movie_code, b.screen_code, d.rating
+        order by d.name, b.screen_name asc, t1 desc
+	</select>
+	
+	<select id="getSummary" resultMap="theaterResult" parameterType="String">
+	   select * from theater
+	   	where theater_code=#{theater_code}
+	</select>
+</mapper>

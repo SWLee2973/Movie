@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="mapper.admin.book">
+<resultMap id="bookResult" type="bookVO">
+		<result property="booking_code" column="booking_code" />
+		<result property="email" column="email" />
+		<result property="phone_number" column="phone_number"/>
+		<result property="movie_name" column="movie_name"/>
+		<result property="movie_code" column="movie_code"/>
+		<result property="theater_code" column="theater_code"/>
+		<result property="theater_name" column="theater_name"/>
+		<result property="screen_code" column="screen_code"/>
+		<result property="screen_name" column="screen_name"/>
+		<result property="time" column="time"/>
+		<result property="movie_date" column="movie_date"/>
+		<result property="selected_seat" column="selected_seat"/>
+		<result property="total_price" column="total_price"/>
+		
+	</resultMap>
+	
+	<select id="getAllBookList" resultMap="bookResult">
+			select * from booking
+	</select>
+
+	<delete id="deleteBook" parameterType="String">
+			delete from booking
+			where booking_code=#{booking_code}
+	</delete>
+	
+	<delete id="deleteBookedSeat" parameterType="String">
+			delete from seat
+			where booking_code=#{booking_code}
+	</delete>
+	
+	<select id="getUserBook" resultMap="bookResult" parameterType="String">
+			select * from booking
+			where email=#{email}
+	</select>
+	
+	<select id="getEmail" resultType="String" parameterType="String">
+			select distinct email from booking
+			where booking_code=#{booking_code}
+	</select>
+	
+	<select id="getBook_code" resultType="String" parameterType="String">
+			select booking_code from booking
+			where email=#{email}
+	</select>
+</mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+	  <definition name="/member/loginForm" extends="baseLayout">
+         <put-attribute name="title" value="로그인" />
+         <put-attribute name="body" value="/WEB-INF/views/member/loginForm.jsp" />
+      </definition>  
+      
+      <definition name="/member/addMember" extends="baseLayout">
+         <put-attribute name="title" value="회원 가입" />
+         <put-attribute name="body" value="/WEB-INF/views/member/memberForm.jsp" />
+      </definition>
+      
+      <definition name="/member/forgotEmail" extends="baseLayout">
+         <put-attribute name="title" value="아이디 찾기" />
+         <put-attribute name="body" value="/WEB-INF/views/member/forgotEmail.jsp" />
+      </definition>
+      
+      <definition name="/member/forgotPassword" extends="baseLayout">
+         <put-attribute name="title" value="비밀번호 찾기" />
+         <put-attribute name="body" value="/WEB-INF/views/member/forgotPassword.jsp" />
+      </definition>
+      
+      <definition name="/member/findEmail" extends="baseLayout">
+         <put-attribute name="title" value="아이디 찾기 결과" />
+         <put-attribute name="body" value="/WEB-INF/views/member/findEmail.jsp" />
+      </definition>
+      
+      <definition name="/member/findPassword" extends="baseLayout">
+         <put-attribute name="title" value="비밀번호 찾기 결과" />
+         <put-attribute name="body" value="/WEB-INF/views/member/findPassword.jsp" />
+      </definition>
+      
+      <definition name="/member/myPage" extends="baseLayout">
+         <put-attribute name="title" value="마이페이지" />
+         <put-attribute name="body" value="/WEB-INF/views/member/myPage.jsp" />
+      </definition>
+  
+</tiles-definitions>
+
+

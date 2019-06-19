@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC
+       "-//Apache Software Foundation//DTD Tiles Configuration 2.0//EN"
+       "http://tiles.apache.org/dtds/tiles-config_2_0.dtd">
+<tiles-definitions>
+    
+    <!-- 예매내역관리 -->
+    <definition name="/admin/book/bookManagement" extends="baseLayout">
+       <put-attribute name="title" value="예매 관리 페이지" />
+       <put-attribute name="body" value="/WEB-INF/views/admin/book/bookManagement.jsp" />
+    </definition>
+    
+   
+    
+</tiles-definitions>
+
+
